@@ -20,7 +20,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return value1 + value2;
+    return value1 + value2;
 }
 
 /**
@@ -35,7 +35,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-  return value.length;
+    return value.length;
 }
 
 /**
@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}!`;
+    return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -67,7 +67,7 @@ function getStringFromTemplate(firstName, lastName) {
  */
 
 function extractNameFromTemplate(value) {
-  return value.slice(7, -1);
+    return value.slice(7, -1);
 }
 
 /**
@@ -81,7 +81,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-  return value[0];
+    return value[0];
 }
 /**
  * Removes a leading and trailing whitespace characters from string.
@@ -95,7 +95,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  return value.trim();
+    return value.trim();
 }
 
 /**
@@ -110,7 +110,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  return value.repeat(count);
+    return value.repeat(count);
 }
 
 /**
@@ -126,7 +126,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+    return str.replace(value, '');
 }
 
 /**
@@ -141,7 +141,7 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  return str.replace(/[<>]/g, '');
+    return str.replace(/[<>]/g, '');
 }
 
 /**
@@ -155,7 +155,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-  return str.toUpperCase();
+    return str.toUpperCase();
 }
 
 /**
@@ -169,7 +169,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return str.split(';');
+    return str.split(';');
 }
 
 /**
@@ -197,11 +197,11 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
 
-  var top = '┌' + '─'.repeat(width - 2) + '┐\n';
-  var side = ('│' + ' '.repeat(width - 2) + '│\n').repeat(height - 2);
-  var bottom = '└' + '─'.repeat(width - 2) + '┘\n';
+    var top = '┌' + '─'.repeat(width - 2) + '┐\n';
+    var side = ('│' + ' '.repeat(width - 2) + '│\n').repeat(height - 2);
+    var bottom = '└' + '─'.repeat(width - 2) + '┘\n';
 
-  return top + side + bottom;
+    return top + side + bottom;
 }
 
 /**
@@ -221,15 +221,15 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
 
-  let lettersCount = 26;
-  let letterLowercase = 'z'.charCodeAt(0);
-  let letterUppercase = 'Z'.charCodeAt(0);
-  let middle = 13;
+    let lettersCount = 26;
+    let letterLowercase = 'z'.charCodeAt(0);
+    let letterUppercase = 'Z'.charCodeAt(0);
+    let middle = 13;
 
-  return str.replace(/[a-zA-Z]/g, function (str) {
-    return String.fromCharCode(
-      (str <= 'Z' ? letterUppercase : letterLowercase) >= (str = str.charCodeAt(0) + middle) ? str : str - lettersCount);
-  });
+    return str.replace(/[a-zA-Z]/g, function (str) {
+        return String.fromCharCode(
+            (str <= 'Z' ? letterUppercase : letterLowercase) >= (str = str.charCodeAt(0) + middle) ? str : str - lettersCount);
+    });
 }
 
 /**
@@ -246,7 +246,7 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return value instanceof String || typeof value === 'string';
+    return value instanceof String || typeof value === 'string';
 }
 
 /**
@@ -274,35 +274,35 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  let getNum = function (symbol) {
-    switch (symbol) {
-      case 'A': return 1;
-      case 'J': return 11;
-      case 'Q': return 12;
-      case 'K': return 13;
-      default: return parseInt(symbol);
-    }
-  };
-  let a = '♣♦♥♠'.indexOf(value.slice(-1)) * 13;
-  let b = getNum(value.slice(0, -1)) - 1;
-  return a + b;
+    let getNum = function (symbol) {
+        switch (symbol) {
+            case 'A': return 1;
+            case 'J': return 11;
+            case 'Q': return 12;
+            case 'K': return 13;
+            default: return parseInt(symbol);
+        }
+    };
+    let a = '♣♦♥♠'.indexOf(value.slice(-1)) * 13;
+    let b = getNum(value.slice(0, -1)) - 1;
+    return a + b;
 }
 
 
 module.exports = {
-  concatenateStrings: concatenateStrings,
-  getStringLength: getStringLength,
-  getStringFromTemplate: getStringFromTemplate,
-  extractNameFromTemplate: extractNameFromTemplate,
-  getFirstChar: getFirstChar,
-  removeLeadingAndTrailingWhitespaces: removeLeadingAndTrailingWhitespaces,
-  repeatString: repeatString,
-  removeFirstOccurrences: removeFirstOccurrences,
-  unbracketTag: unbracketTag,
-  convertToUpperCase: convertToUpperCase,
-  extractEmails: extractEmails,
-  getRectangleString: getRectangleString,
-  encodeToRot13: encodeToRot13,
-  isString: isString,
-  getCardId: getCardId,
+    concatenateStrings: concatenateStrings,
+    getStringLength: getStringLength,
+    getStringFromTemplate: getStringFromTemplate,
+    extractNameFromTemplate: extractNameFromTemplate,
+    getFirstChar: getFirstChar,
+    removeLeadingAndTrailingWhitespaces: removeLeadingAndTrailingWhitespaces,
+    repeatString: repeatString,
+    removeFirstOccurrences: removeFirstOccurrences,
+    unbracketTag: unbracketTag,
+    convertToUpperCase: convertToUpperCase,
+    extractEmails: extractEmails,
+    getRectangleString: getRectangleString,
+    encodeToRot13: encodeToRot13,
+    isString: isString,
+    getCardId: getCardId,
 };
