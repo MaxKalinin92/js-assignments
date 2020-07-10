@@ -175,7 +175,7 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
-    // throw new Error('Not implemented');
+
     var src1 = source1(),
         src2 = source2(),
         val1 = src1.next().value,
@@ -207,7 +207,17 @@ function* mergeSortedSequences(source1, source2) {
  *   Most popular implementation of the logic in npm https://www.npmjs.com/package/co
  */
 function async(generator) {
-    throw new Error('Not implemented');
+
+    function resolveResult(result) {
+        
+    
+        if (result.done) {
+            return Promise.resolve(result.value);
+        }
+        return Promise.resolve(result.value).then((response) => resolveResult(gen.next(response)));
+    }
+    var gen = generator();
+    return resolveResult(gen.next());
 }
 
 
