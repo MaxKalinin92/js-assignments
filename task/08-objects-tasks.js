@@ -23,7 +23,12 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
-    throw new Error('Not implemented');
+
+    this.width   = width;
+    this.height  = height;
+}
+Rectangle.prototype.getArea = function() {
+    return this.width * this.height;
 }
 
 
@@ -38,7 +43,8 @@ function Rectangle(width, height) {
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
 function getJSON(obj) {
-    throw new Error('Not implemented');
+
+    return JSON.stringify(obj);
 }
 
 
@@ -54,7 +60,8 @@ function getJSON(obj) {
  *
  */
 function fromJSON(proto, json) {
-    throw new Error('Not implemented');
+
+    return Object.setPrototypeOf(JSON.parse(json), proto);
 }
 
 
@@ -108,33 +115,102 @@ function fromJSON(proto, json) {
 
 const cssSelectorBuilder = {
 
+    err_1: 'Element, id and pseudo-element should not occur more then one time inside the selector',
+    err_2: 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element',
+    num:0,
+    res: '',
+
     element: function(value) {
-        throw new Error('Not implemented');
+        let ownNum = 1;
+        if(this.hasOwnProperty('isElem')){
+            throw this.err_1
+        };
+        if(this.num > ownNum) {
+        	throw this.err_2;
+        }
+        
+        let a = {num: ownNum, isElem: value, res: value };
+        a.__proto__ = this;
+        return a;
     },
 
     id: function(value) {
-        throw new Error('Not implemented');
+
+        let ownNum = 2;
+        if(this.hasOwnProperty('isId')){
+            throw this.err_1
+        };
+        if(this.num > ownNum) {
+        	throw this.err_2;
+        }
+        let b = this.res + `#${value}`;
+        let a = {num: ownNum, isId: value, res: b };
+        a.__proto__= this;
+        return a;
     },
 
     class: function(value) {
-        throw new Error('Not implemented');
+
+        let ownNum = 3;
+        
+        if(this.num > ownNum) {
+        	throw this.err_2;
+        }
+        let b = this.res + `.${value}`;
+        let a = {num: ownNum, res: b};
+        a.__proto__= this;
+        return a;
     },
 
     attr: function(value) {
-        throw new Error('Not implemented');
+        let ownNum = 4;
+        
+        if(this.num > ownNum) {
+        	throw this.err_2;
+        }
+        let b = this.res + `[${value}]`
+        let a = {num: ownNum, res: b};
+        a.__proto__= this;
+        return a;
     },
 
     pseudoClass: function(value) {
-        throw new Error('Not implemented');
+        let ownNum = 5;
+       
+        if(this.num > ownNum) {
+        	throw this.err_2;
+        }
+        let b = this.res + `:${value}`
+        let a = {num: ownNum, res: b};
+        a.__proto__= this;
+        return a;
     },
 
     pseudoElement: function(value) {
-        throw new Error('Not implemented');
+
+        let ownNum = 6;
+        if(this.hasOwnProperty('isPsElem')){
+            throw this.err_1
+        };
+        if(this.num > ownNum) {
+        	throw this.err_2;
+        }
+        let b = this.res + `::${value}`
+        let a = {num: ownNum, isPsElem: value, res: b };
+        a.__proto__= this;
+        return a;
     },
 
     combine: function(selector1, combinator, selector2) {
-        throw new Error('Not implemented');
+
+        var s = { res: `${selector1.res} ${combinator} ${selector2.res}` };
+       	s.__proto__ = this;
+       	return s;
     },
+
+    stringify: function(){
+        return this.res;
+    }
 };
 
 
