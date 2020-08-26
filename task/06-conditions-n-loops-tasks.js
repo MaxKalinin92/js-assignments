@@ -349,7 +349,7 @@ function isBracketsBalanced(str) {
     for (let i = 0; i < str.length; i++) {
         if (openBracket.indexOf(str[i]) >= 0)
             stack.push(openBracket.indexOf(str[i]));
-        else if (closeBracket[stack.pop()] != str[i])
+        else if (closeBracket[stack.pop()] !== str[i])
             return false;
     }
     return stack.length == 0;
@@ -462,7 +462,7 @@ function getCommonDirectoryPath(pathes) {
     for (var i = 0; i < pathes[0].length; i++) {
         var b = true;
         for (var j = 1; j < pathes.length; j++)
-            if (pathes[0][i] != pathes[j][i]) {
+            if (pathes[0][i] !== pathes[j][i]) {
                 b = false;
                 break;
             }
@@ -501,7 +501,7 @@ function getMatrixProduct(m1, m2) {
     let colsM2 = m2[0].length;
     let m3 = [];
 
-if (colsM1 != rowsM2) return false;
+if (colsM1 !== rowsM2) return false;
 
 for (var i = 0; i < rowsM1; i++) m3[ i ] = [];
 for (var k = 0; k < colsM2; k++)
@@ -573,10 +573,10 @@ function evaluateTicTacToePosition(position) {
                 x2 = value[i].x,
                 y2 = value[i].y;
             playerCode = position[y2][x2];
-            if (position[y2][x2] != position[y1][x1])
+            if (position[y2][x2] !== position[y1][x1])
                 isWin = false;
         }
-        if (isWin && playerCode != undefined)
+        if (isWin && playerCode !== undefined)
             winner.add(playerCode);
     });
 
